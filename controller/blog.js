@@ -39,14 +39,19 @@ exports.listid = async (req, res) => {
 exports.list = async (req, res) => {
   try {
     const blogs = await Blog.findAll();
-    res.json(blogs);
-    //res.render("test", { title: "Express", data: blogs });
+    //res.json(blogs);
+    res.render("blog", { title: "Blog", data: blogs });
   } catch (error) {
     res.json({ status: false, message: error.errors });
   }
 };
 
 exports.update = async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    res.status(422).json({ errors: errors.array() });
+    return;
+  }
   const blog = req.body;
   const postId = parseInt(req.params.id);
   let updateBlog = null;
@@ -87,11 +92,20 @@ exports.validate = method => {
   switch (method) {
     case "create": {
       return [
-        check("postTitle", "postTitle Invalid").exists(),
-        check("postDetail", "postDetail Invalid").exists(),
-        check("postDtm", "postDtm Invalid").exists(),
-        check("postAuthor", "postAuthor Invalid").exists(),
-        check("postStatus", "postStatus Invalid").exists()
+        check("postTitle", "postTitle Invalid").isLength({ min: 1 }),
+        check("postDetail", "postDetail Invalid").isLength({ min: 1 }),
+        check("postDtm", "postDtm Invalid").isLength({ min: 1 }),
+        check("postAuthor", "postAuthor Invalid").isLength({ min: 1 }),
+        check("postStatus", "postStatus Invalid").isLength({ min: 1 })
+      ];
+    }
+    case "update": {
+      return [
+        check("postTitle", "postTitle Invalid").isLength({ min: 1 }),
+        check("postDetail", "postDetail Invalid").isLength({ min: 1 }),
+        check("postDtm", "postDtm Invalid").isLength({ min: 1 }),
+        check("postAuthor", "postAuthor Invalid").isLength({ min: 1 }),
+        check("postStatus", "postStatus Invalid").isLength({ min: 1 })
       ];
     }
   }

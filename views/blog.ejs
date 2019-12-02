@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+
+
+      <h2>Blog List</h2>
+      <% for(var i=0; i<data.length; i++) {%>
+        <p>
+            <%= data[i].postTitle %>
+            <%= data[i].postDetail %>
+            <%= data[i].postDtm %>
+            <%= data[i].postAuthor %>
+            <%= data[i].postStatus %>
+        </p>
+       
+      <% } %>
+
+  </body>
+</html>
