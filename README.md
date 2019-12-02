@@ -1,6 +1,6 @@
 # NodeWebMVCDemo
 
-April 27, 2017 at Faculty of Engineering, Chulalongkorn University
+Faculty of Informatics ,Mahasarakham University
 
 ## Overview
 
