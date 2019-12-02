@@ -1,6 +1,6 @@
 # NodeWebMVCDemo
 
-Faculty of Informatics ,Mahasarakham University
+Faculty of Informatics ,Mahasarakham University By Sirichai Chulee
 
 ## Overview
 
